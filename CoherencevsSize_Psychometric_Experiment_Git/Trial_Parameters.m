@@ -133,19 +133,6 @@ for i = 1:noDots
     yRandomValues(i) = sin(dotRadians(i)); 
 end
 
-% Visulisation arrows
-triangleBaseMultiplier = 1; % width of arrow base relative to dot
-triangleHeightMultiplier = .85; % length of arrow (points forward)
-triangleOffsetMultiplier = 1.45; % how far ahead of the dot to place the arrow tip
-triangleSize = round(dotSize * triangleBaseMultiplier); % width across (base)
-triangleHeight = round(dotSize * triangleHeightMultiplier); % length in motion direction
-arrowOffset = round(dotSize * triangleOffsetMultiplier); % offset ahead of dot
-triangleShape = [-triangleSize, -triangleHeight/2; % left corner
-    -triangleSize,  triangleHeight/2;  % right corner
-     0,    0]; % tip of arrow (points right)
-triangleShape = triangleShape'; % Make it 2x3
-triangleColour = [0 1 0]; % Colour
-
 % Min and Max values for x and y spawning
 movementPos = rand(2, noDots) .* repmat([width; height], 1, noDots); % Creates random spawn positions for dots within screen bounds
 dotOriginalPositions = movementPos; % Stores the original value of movementPos prior to updates allowing for movement to be reset to its original position
