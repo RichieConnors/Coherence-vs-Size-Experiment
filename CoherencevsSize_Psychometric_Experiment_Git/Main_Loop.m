@@ -116,7 +116,7 @@ while trialCount < noTrials
     
     % Check which dots are inside the current target radius
     insideRadius = distances <= RDK_Radius;
-    disp(sum(insideRadius))
+   
     % Makes sure a dot withinside the target is always considered a dot
     % inside the target
     if dotTracker <= 1
@@ -169,54 +169,6 @@ while trialCount < noTrials
     % Sets fixation dot within the RDK
     if RDK_Fixation == true
         Screen('DrawDots', windowPtr, RDK_Center_Random_Location, fixationDotSize, RDK_fixationColour, [], 1);
-    end
-
-    if ARROWS
-        for i = 1:noDots
-            % Draws arrow on every nth defined dot
-            if ~isRDKDot(i) && mod(i, 4) ~= 0
-                continue;
-            end
-
-            if isRDKDot(i) && mod(i, 2) ~= 0
-                continue;
-            end
-
-            if Index <= 2
-                RDK_DirX = RDK_Direction(Index);
-                RDK_DirY = 0;
-            else
-                RDK_DirX = 0;
-                RDK_DirY = RDK_Direction(Index);
-            end
-
-            RDK_Angle = atan2(RDK_DirY, RDK_DirX);  % Produces angle in radians
-
-            % Rotation matrix for visualisation arrows
-            R_RDK = [cos(RDK_Angle), -sin(RDK_Angle); sin(RDK_Angle), cos(RDK_Angle)];
-            R = [cos(dotRadians(i)), -sin(dotRadians(i)); sin(dotRadians(i)), cos(dotRadians(i))];
-        
-            % Rotate triangle
-            rotatedTriangleRDK = R_RDK * triangleShape;
-            rotatedTriangle = R * triangleShape;
-
-            leadX_RDK = movementPos(1, i) + arrowOffset * RDK_DirX;
-            leadY_RDK = movementPos(2, i) + arrowOffset * RDK_DirY;
-
-            leadX = movementPos(1, i) + arrowOffset * xRandomValues(i);
-            leadY = movementPos(2, i) + arrowOffset * yRandomValues(i);
-        
-            % Translate to dot position
-            translatedTriangleRDK = rotatedTriangleRDK + [leadX_RDK; leadY_RDK];
-            translatedTriangle = rotatedTriangle + [leadX; leadY];
-            
-            % Draw triangle
-            if isRDKDot(i)
-                Screen('FillPoly', windowPtr, [0 1 0], translatedTriangleRDK', 1);
-            else
-                Screen('FillPoly', windowPtr, [1 0 0], translatedTriangle', 1);
-            end
-        end
     end
 
     % Checks if a key is pressed and sets bool to true and tracks the key
