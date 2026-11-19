@@ -1,8 +1,8 @@
 %% Setup of psychtoolbox & other screen requirements
 
 % First add relevant folders to path, including input, output, and functions
-addpath("Functions\");
-addpath("Output Files\");
+addpath("Functions");
+addpath("Output Files");
 
 %% Psychtoolbox setup
 PsychDefaultSetup(2);
