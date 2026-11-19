@@ -1,7 +1,8 @@
 %% Creates all relevant output information
 
 %% Directory to save each participant in a separate folder
-saveDir = sprintf('Output Files/Participant_ID_%s', participant_ID);
+scriptDir = fileparts(mfilename('fullpath'));
+saveDir = fullfile(scriptDir, sprintf('Output Files/Participant_ID_%s', participant_ID));
 if ~exist(saveDir, 'dir') 
     mkdir(saveDir);  % Creates folder if new participant number
 else
