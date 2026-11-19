@@ -11,7 +11,7 @@ Screen('Preference', 'VisualDebugLevel', 0); % Skips visual debug
 Screen('Preference', 'SuppressAllWarnings', 1); % Hides all output messages in console from PTB
 
 % Open a window
-screenNumber = 1;%max(Screen('Screens')); % Gets the Max Screen number meaning if using multiple screens it will not choose laptop 
+screenNumber = max(Screen('Screens')); % Gets the Max Screen number meaning if using multiple screens it will not choose laptop 
                                        % (set to relevant screen manually if more than 2)
 background_Colour = .33; % From 0-1 currently
 [windowPtr, ~] = PsychImaging('OpenWindow', screenNumber, background_Colour); % Opens window on specified screen with the colour inputted
