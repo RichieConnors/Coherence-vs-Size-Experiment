@@ -8,7 +8,7 @@ participant_ID = 'na';
 participant_Name = '';
 participant_Age = '';
 participant_Sex = '';
-language = 1; % 0 for English, 1 for Dutch
+language = 0; % 0 for English, 1 for Dutch
 
 %% Calling of relevant scripts
 % Run reaction time pre test
