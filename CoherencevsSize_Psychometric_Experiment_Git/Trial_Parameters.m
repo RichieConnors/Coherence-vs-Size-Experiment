@@ -85,8 +85,6 @@ dotSizeDeg = .3; %.25; % Input size of dots in degrees (.25 deg = 10px on my scr
 dotsPerDegree = 6.5; %10.44; % Can input num dots wanted or percentage which represents the num of dots per pixel area, again with 10% representing 10% of pixels available
 dotVelocityDeg = 3; %1.0878; % Desired velocity in degrees per second
 dotColour = [.5 .5 .5]; % Colour of dots
-minLifetime = .2; % Set the minimum length of time (s) which dots move before chosing a new path
-maxLifetime = .75; % Set the maximimum length of time (s) which dots move before chosing a new path
 
 % Transformed parameters
 dotSize = round(dotSizeDeg * ppd); % Size of dot radii (pixels)
@@ -98,8 +96,8 @@ dotColours = repmat(dotColour, noDots, 1); % Used to assign each dot an individu
 dotVelocity = round((dotVelocityDeg/frameRate) * ppd, 2); % Speed of dots, approx pixels per frame (if using delta time convert to pixels per second (* 60)). Multiply by fps to get pixels per second. Can input directly as px amount if preferred.
 
 % Set timers for dots
-maxLifetime = (RDK_Radius*2) / (dotVelocity*frameRate);%.2 / dotVelocityDeg; % Set the minimum length of time (s) which dots move before chosing a new path
-minLifetime = maxLifetime*.75; %.75 / dotVelocityDeg; % Set the maximimum length of time (s) which dots move before chosing a new path
+maxLifetime = (RDK_Radius*2) / (dotVelocity*frameRate); % Set the maximum length of time (s) which dots move before chosing a new path, is set to how long it takes a dot to travel the diameter of the target.
+minLifetime = maxLifetime*.75; %.75 / dotVelocityDeg; % Set the minimum length of time (s) which dots move before chosing a new path
 dotTimers = minLifetime + (maxLifetime - minLifetime) .* rand(1, noDots); % Random timers for random dots before they are given new movement paths (not lifetimes but similar in a sense)
 
 % Other variables
